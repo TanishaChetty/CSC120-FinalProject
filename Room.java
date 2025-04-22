@@ -1,4 +1,4 @@
-public class Room extends Floor{
+public class Room{
     
     protected String name;
     protected String description;
