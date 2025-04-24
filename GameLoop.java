@@ -14,12 +14,35 @@ public class GameLoop {
         String userResponse = "";
 
         // This could be replaced with a more interesting opening
-        System.out.println("******************");
-        System.out.println("WELCOME TO MY GAME");
-        System.out.println("******************");
+        System.out.println("****************************************************************");
+        System.out.println("ESCAPING THE CLOWN HOUSE CHALLENGE!! NOT CLICKBAIT!! *emotional*");
+        System.out.println("****************************************************************");
 
         // Instructions are sometimes helpful
-        System.out.println("Enter WIN to win, LOSE to lose, anything else to continue playing.");
+        System.out.println("You wake up.");
+        System.out.println("You’re in a dark basement and you are chained to the radiator! It seems to be humming a tune…");
+        System.out.println("The last thing you remember is your higher up in the MLM, holding a big rubber mallet telling you that you didn’t sell enough leggings this month.");
+        System.out.println("Next thing you know you were hearing the honk of the mallet as it hit your head.");
+        System.out.println("You went down whack-a-mole style.");
+
+        System.out.println("You know you have to escape this crazy clown house which serves as the headquarters for this MLM you joined that one god-forsaken night after you decided software engineering wasn't your passion anymore. But how?");
+        System.out.println("Here are the commands you can use as you try to escape:");
+        System.out.println("Look around");
+        System.out.println("Go north");
+        System.out.println("Go east");
+        System.out.println("Go south");
+        System.out.println("Go west");
+        System.out.println("Go up");
+        System.out.println("Go down");
+        System.out.println("Pick up {object}");
+        System.out.println("Put down {object}");
+        System.out.println("Harmonize");
+        System.out.println("Use {object}");
+        System.out.println("Backflip");
+
+        System.out.println("You can use any of these commands to navigate through the house as you attempt to escape! But first you'll have to unchain yourself from this musical radiator...");
+
+
 
         // The do...while structure means we execute the body of the loop once before checking the stopping condition
         do {
