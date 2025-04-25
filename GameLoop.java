@@ -22,7 +22,7 @@ public class GameLoop {
         System.out.println("You wake up.");
         System.out.println("You’re in a dark basement and you are chained to the radiator! It seems to be humming a tune…");
         System.out.println("The last thing you remember is your higher up in the MLM, holding a big rubber mallet telling you that you didn’t sell enough leggings this month.");
-        System.out.println("Next thing you know you were hearing the honk of the mallet as it hit your head.");
+        System.out.println("Next thing you know you were hearing the squeak of the mallet as it hit your head.");
         System.out.println("You went down whack-a-mole style.");
 
         System.out.println("You know you have to escape this crazy clown house which serves as the headquarters for this MLM you joined that one god-forsaken night after you decided software engineering wasn't your passion anymore. But how?");

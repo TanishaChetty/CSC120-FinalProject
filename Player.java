@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Player {
 
+    String activeRoom = this.Floor.activeRoom;
     protected ArrayList <Objects> inventory;
 
     public Player(){
@@ -15,7 +16,7 @@ public class Player {
     }
 
     public boolean backflip(){
-        if (this.Floor.activeRoom == ballpit){
+        if (this.activeRoom == ballpit){
             //"That was an awesome backflip! You land in the balls and feel a cold piece of metal poking into your behind. How embarassing! Hopefully nobody saw. You look under you to investigate and find that you backflipped onto a key!"
             return true;
         } else{
