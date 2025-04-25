@@ -8,10 +8,10 @@ public class GameLoop {
         boolean stillPlaying = true;
 
         // We'll use this to get input from the user.
-        Scanner userInput = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         // Storage for user's responses
-        String userResponse = "";
+        String command = "";
 
         // This could be replaced with a more interesting opening
         System.out.println("****************************************************************");
@@ -42,26 +42,23 @@ public class GameLoop {
 
         System.out.println("You can use any of these commands to navigate through the house as you attempt to escape! But first you'll have to unchain yourself from this musical radiator...");
 
+        Floor f = new Floor();
+        f.activeRoom = f.floorMap.get(0);
 
+        Player p = new Player();
 
         // The do...while structure means we execute the body of the loop once before checking the stopping condition
         do {
-            // ************************************************
-            // The stuff that happens in your game will go here
-            //  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓
-            System.out.println("You are still playing. Follow the instructions if you want to win/lose...");
-            userResponse = userInput.nextLine().toUpperCase();
 
-            // ***********************************************************************
-            // And as the player interacts, you'll check to see if the game should end
-            //  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓  ↓
-            if (userResponse.equals("WIN") || userResponse.equals("LOSE")) {
-                stillPlaying = false;
+            command = scanner.nextLine().toUpperCase();
+
+            if (command.equals("GO NORTH")) {
+                p.goNorth(f.activeRoom);
             }
         } while (stillPlaying);
 
         // Tidy up
-        userInput.close();
+        scanner.close();
 
         // Once you exit the loop, you may need to deal with various possible stopping conditions
         if (userResponse.equals("WIN")) {
