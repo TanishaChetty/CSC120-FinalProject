@@ -35,4 +35,8 @@ public class Room{
                 return null;
         }
     }
+
+    public String getDescription(){
+        return description;
+    }
 }
