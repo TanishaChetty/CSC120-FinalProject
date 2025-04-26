@@ -16,6 +16,11 @@ public class Room{
         this.westWall = westWall;
     }
 
+
+    public String getName(){
+        return name;
+    }
+
     public Room getNeighbor(String dir){
         switch(dir){
             case "NORTH": 

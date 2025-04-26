@@ -29,7 +29,8 @@ public class Player extends Floor{
     public Room goNorth(Room activeRoom){
         if (activeRoom.getNeighbor("NORTH") != null){
             activeRoom = activeRoom.getNeighbor("NORTH");
-            System.out.println("You have entered " + activeRoom.get(0) + ".");
+            String roomName = activeRoom.getName();
+            System.out.println("You have entered " + roomName + ".");
             return activeRoom;
         } else{
             System.out.println("Ouch! You just ran into a wall.");
@@ -40,6 +41,8 @@ public class Player extends Floor{
     public Room goEast(Room activeRoom){
         if (activeRoom.getNeighbor("EAST") != null){
             activeRoom = activeRoom.getNeighbor("EAST");
+            String roomName = activeRoom.getName();
+            System.out.println("You have entered " + roomName + ".");
             return activeRoom;
         } else{
             System.out.println("Ouch! You just ran into a wall.");
@@ -50,6 +53,8 @@ public class Player extends Floor{
     public Room goSouth(Room activeRoom){
         if (activeRoom.getNeighbor("SOUTH") != null){
             activeRoom = activeRoom.getNeighbor("SOUTH");
+            String roomName = activeRoom.getName();
+            System.out.println("You have entered " + roomName + ".");
             return activeRoom;
         } else{
             System.out.println("Ouch! You just ran into a wall.");
@@ -60,11 +65,14 @@ public class Player extends Floor{
     public Room goWest(Room activeRoom){
         if (activeRoom.getNeighbor("WEST") != null){
             activeRoom = activeRoom.getNeighbor("WEST");
+            String roomName = activeRoom.getName();
+            System.out.println("You have entered " + roomName + ".");
             return activeRoom;
         } else{
             System.out.println("Ouch! You just ran into a wall.");
             return activeRoom;
         }
     }
+
 
 }
