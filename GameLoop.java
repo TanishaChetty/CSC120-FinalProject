@@ -37,6 +37,10 @@ public class GameLoop {
         System.out.println("Harmonize");
         System.out.println("Use {object}");
         System.out.println("Backflip");
+        System.out.println("Go pee");
+        System.out.println("Flush");
+        System.out.println("Wash hands");
+
 
         System.out.println("You can use any of these commands to navigate through the house as you attempt to escape! But first you'll have to unchain yourself from this musical radiator...");
 
@@ -49,6 +53,8 @@ public class GameLoop {
         Boolean foundKeyTwo = false;
         Boolean foundKeyThree = false;
         Boolean bigDoorOpen = false;
+        Boolean wentPee = false;
+        Boolean flushed = false;
 
         // The do...while structure means we execute the body of the loop once before checking the stopping condition
         do {
@@ -91,9 +97,13 @@ public class GameLoop {
 
             if (command.equals("GO WEST")) {
                 if (moveability==true){
-                    p.goWest(f.activeRoom);
                     if (f.activeRoom == f.floorMap.get(1)){
-                        foundKeyOne = true;
+                        if (foundKeyOne == false){
+                            System.out.println("Ooh a key! In the cupboard!");
+                            foundKeyOne = true;
+                        }
+                    } else{
+                        p.goWest(f.activeRoom);
                     }
                 } else {
                     System.out.println("Hmmmm... you seem to be a bit stuck. Can't move... yet...");
@@ -114,7 +124,12 @@ public class GameLoop {
                 if (moveability==true){
                     if (f.activeRoom!=f.floorMap.get(7)){
                         if (p.backflip()){
-                            foundKeyTwo = true;
+                            if (foundKeyTwo == false){
+                                System.out.println("That was an awesome backflip! You land in the balls and feel a cold piece of metal poking into your behind. How embarassing! Hopefully nobody saw. You look under you to investigate and find that you backflipped onto a key!");
+                                foundKeyTwo = true;
+                            } else{
+                                System.out.println("That was an awesome backflip!");
+                            }
                         }
                     } else{
                         System.out.println("YIKES! That backflip was a little wonky, and you shatterred the mirrors around you. The glass came spilling down and cut you all up and now you're bleeding out. And now you're dead.");
@@ -128,6 +143,56 @@ public class GameLoop {
             if (command.equals("LOOK AROUND")){
                 System.out.println(p.lookAround(f.activeRoom));
             }
+
+            if (command.equals("GO PEE")){
+                if (p.goPee(f.activeRoom)){
+                    System.out.println("Epic! You just peed in the toilet. Your bladder feels so relieved.");
+                    wentPee = true;
+                }
+            }
+
+            if (command.equals("FLUSH")){
+                if (wentPee == true){
+                    if (p.flush(f.activeRoom)){
+                        System.out.println("Awesome! Gold star.");
+                        flushed = true;
+                    }
+                } else if (f.activeRoom!=f.floorMap.get(5)){
+                    System.out.println("Flush what? Don't answer that...");
+                } else {
+                    System.out.println("Ok sure.");
+                }
+            }
+
+            if (command.equals("WASH HANDS")){
+                if (flushed == true){
+                    if (p.washHands(f.activeRoom)){
+                        if (foundKeyThree == false){
+                            System.out.println("Nice. Your hands are all clean. Woah! A key just appeared in the sink!");
+                            foundKeyThree = true;
+                        } else{
+                            System.out.println("Nice. Your hands are all clean.");
+                        }
+                    }
+                } else if (f.activeRoom!=f.floorMap.get(5)){
+                    System.out.println("Not sure what you're trying to wash your hands with but it doesn't seem to be working.");
+                } else{
+                    System.out.println("Your hands are nice and clean. But something's missing. Maybe you missed some steps?");
+                }
+            }
+
+            if (command.equals ("PICK UP KEY")){
+                p.pickUp(f.activeRoom,foundKeyOne,foundKeyTwo,foundKeyThree);
+            }
+
+            if (command.equals ("PUT DOWN KEY")){
+                if (p.putDown()){
+                    foundKeyOne = false;
+                    foundKeyTwo = false;
+                    foundKeyThree = false;
+                }
+            }
+
 
 
         } while (stillPlaying);
