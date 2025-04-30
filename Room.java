@@ -39,4 +39,11 @@ public class Room{
     public String getDescription(){
         return description;
     }
+
+    public void resetsWalls(Room northWall, Room eastWall, Room southWall, Room westWall){
+        this.northWall = northWall;
+        this.eastWall = eastWall;
+        this.southWall = southWall;
+        this.westWall = westWall;
+    }
 }

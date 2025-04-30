@@ -32,10 +32,10 @@ public class GameLoop {
         System.out.println("Go east");
         System.out.println("Go south");
         System.out.println("Go west");
-        System.out.println("Pick up {object}");
-        System.out.println("Put down {object}");
+        System.out.println("Pick up key");
+        System.out.println("Put down key");
         System.out.println("Harmonize");
-        System.out.println("Use {object}");
+        System.out.println("Use keys");
         System.out.println("Backflip");
         System.out.println("Go pee");
         System.out.println("Flush");
@@ -63,39 +63,33 @@ public class GameLoop {
 
             if (command.equals("GO NORTH")) {
                 if (moveability==true){
-                    p.goNorth(f.activeRoom);
+                    f.activeRoom = p.goNorth(f.activeRoom);
                 } else {
                     System.out.println("Hmmmm... you seem to be a bit stuck. Can't move... yet...");
                 }
-            }
-
-            if (command.equals("GO EAST")) {
+            } else if (command.equals("GO EAST")) {
                 if (moveability==true){
-                    p.goEast(f.activeRoom);
+                    f.activeRoom = p.goEast(f.activeRoom);
                 } else {
                     System.out.println("Hmmmm... you seem to be a bit stuck. Can't move... yet...");
                 }
-            }
-
-            if (command.equals("GO SOUTH")) {
+            } else if (command.equals("GO SOUTH")) {
                 if (moveability==true){
                     if (f.activeRoom==f.floorMap.get(9)){
                         if (bigDoorOpen){
                             p.goSouth(f.activeRoom);
-                            System.out.println("You made it! You're free! Goodbye crazy MLM clown house... for now...");
+                            System.out.println("You made it! You're free! A tear of happiness rolls down your face and you're overcome with a newfound sense of gratitude for the world. You finally have a chance to reconcile with Barbara and maybe build that beautiful life together that you've always dreamed of. Goodbye crazy MLM clown house... for now...");
                             stillPlaying = false;
                         } else{
                             System.out.println("LOUD INCORRECT BUZZER NOISE. Seems like you need some keys to get through here.");
                         }
                     } else{
-                        p.goSouth(f.activeRoom);
+                        f.activeRoom = p.goSouth(f.activeRoom);
                     }
                 } else {
                     System.out.println("Hmmmm... you seem to be a bit stuck. Can't move... yet...");
                 }
-            }
-
-            if (command.equals("GO WEST")) {
+            } else if (command.equals("GO WEST")) {
                 if (moveability==true){
                     if (f.activeRoom == f.floorMap.get(1)){
                         if (foundKeyOne == false){
@@ -103,14 +97,12 @@ public class GameLoop {
                             foundKeyOne = true;
                         }
                     } else{
-                        p.goWest(f.activeRoom);
+                        f.activeRoom = p.goWest(f.activeRoom);
                     }
                 } else {
                     System.out.println("Hmmmm... you seem to be a bit stuck. Can't move... yet...");
                 }
-            }
-
-            if (command.equals("HARMONIZE")){
+            } else if (command.equals("HARMONIZE")){
                 if (moveability==false){
                     if (p.harmonize()){
                         moveability = true;
@@ -118,9 +110,7 @@ public class GameLoop {
                 } else{
                     System.out.println("That's a nice tune. If only music could really solve every problem. It's not solving this one.");
                 }
-            }
-
-            if (command.equals("BACKFLIP")){
+            } else if (command.equals("BACKFLIP")){
                 if (moveability==true){
                     if (f.activeRoom!=f.floorMap.get(7)){
                         if (p.backflip()){
@@ -132,26 +122,20 @@ public class GameLoop {
                             }
                         }
                     } else{
-                        System.out.println("YIKES! That backflip was a little wonky, and you shatterred the mirrors around you. The glass came spilling down and cut you all up and now you're bleeding out. And now you're dead.");
+                        System.out.println("YIKES! That backflip was a little wonky, and you shatterred the mirrors around you. The glass came spilling down and cut you all up and now you're bleeding out. Your life flashes before your eyes. You see the face of Barbara, your first love from the tenth grade. You think of the naive but deep and true love you shared and you think of how carelessly you broke her heart when you both left for college because you didn't want to do long distance. You think of the beautiful life you two could have shared together. You think of how you'll never get the chance to reconcile with her ever again. Life around you fades and you see a bright light. You move towards it. And now you're dead.");
                         stillPlaying = false;
                     }
                 } else {
                     System.out.println("Woah there buster, maybe try freeing yourself from those chains before you start doing flips.");
                 }
-            }
-
-            if (command.equals("LOOK AROUND")){
+            } else if (command.equals("LOOK AROUND")){
                 System.out.println(p.lookAround(f.activeRoom));
-            }
-
-            if (command.equals("GO PEE")){
+            } else if (command.equals("GO PEE")){
                 if (p.goPee(f.activeRoom)){
                     System.out.println("Epic! You just peed in the toilet. Your bladder feels so relieved.");
                     wentPee = true;
                 }
-            }
-
-            if (command.equals("FLUSH")){
+            } else if (command.equals("FLUSH")){
                 if (wentPee == true){
                     if (p.flush(f.activeRoom)){
                         System.out.println("Awesome! Gold star.");
@@ -162,9 +146,7 @@ public class GameLoop {
                 } else {
                     System.out.println("Ok sure.");
                 }
-            }
-
-            if (command.equals("WASH HANDS")){
+            } else if (command.equals("WASH HANDS")){
                 if (flushed == true){
                     if (p.washHands(f.activeRoom)){
                         if (foundKeyThree == false){
@@ -179,18 +161,25 @@ public class GameLoop {
                 } else{
                     System.out.println("Your hands are nice and clean. But something's missing. Maybe you missed some steps?");
                 }
-            }
-
-            if (command.equals ("PICK UP KEY")){
+            } else if (command.equals ("PICK UP KEY")){
                 p.pickUp(f.activeRoom,foundKeyOne,foundKeyTwo,foundKeyThree);
-            }
-
-            if (command.equals ("PUT DOWN KEY")){
+            } else if (command.equals ("PUT DOWN KEY")){
                 if (p.putDown()){
                     foundKeyOne = false;
                     foundKeyTwo = false;
                     foundKeyThree = false;
                 }
+            } else if (command.equals ("USE KEYS")){
+                if (f.activeRoom == f.floorMap.get(9)){
+                    if(p.useKeys()){
+                        bigDoorOpen = true;
+                        System.out.println("Wow you got the door open! One more step and you're free!");
+                    }
+                } else {
+                    System.out.println("Use keys where? Up your butt??");
+                }
+            } else {
+                System.out.println("Command not recognized. Try again.");
             }
 
 
@@ -200,7 +189,9 @@ public class GameLoop {
         // Tidy up
         scanner.close();
 
+        System.out.println("*********");
         System.out.println("GAME OVER");
+        System.out.println("*********");
 
     }
 

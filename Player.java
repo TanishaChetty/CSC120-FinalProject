@@ -18,7 +18,7 @@ public class Player extends Floor{
     }
 
     public boolean backflip(){
-        if (this.activeRoom == floorMap.get(9)){
+        if (activeRoom == floorMap.get(8)){
             return true;
         } else{
             System.out.println("Epic backflip. Okay, Benson Boone! If only you were really Benson Boone he would probably know what to do. Maybe it's time to try a new move.");
@@ -138,6 +138,15 @@ public class Player extends Floor{
             this.inventory.clear();
             return true;
         } else{
+            return false;
+        }
+    }
+
+    public Boolean useKeys(){
+        if (this.inventory.contains(keyOne)&&this.inventory.contains(keyTwo)&&this.inventory.contains(keyThree)){
+            return true;
+        } else{
+            System.out.println("Stop right there buster! The amount of keys you have doesn't seem to match the amount of keyholes. You're still stuck!!");
             return false;
         }
     }
