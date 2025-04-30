@@ -113,7 +113,7 @@ public class GameLoop {
             } else if (command.equals("BACKFLIP")){
                 if (moveability==true){
                     if (f.activeRoom!=f.floorMap.get(7)){
-                        if (p.backflip()){
+                        if (p.backflip(f.activeRoom)){
                             if (foundKeyTwo == false){
                                 System.out.println("That was an awesome backflip! You land in the balls and feel a cold piece of metal poking into your behind. How embarassing! Hopefully nobody saw. You look under you to investigate and find that you backflipped onto a key!");
                                 foundKeyTwo = true;

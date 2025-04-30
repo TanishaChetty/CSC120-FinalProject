@@ -17,8 +17,8 @@ public class Player extends Floor{
         return true;
     }
 
-    public boolean backflip(){
-        if (activeRoom == floorMap.get(8)){
+    public boolean backflip(Room activeRoom){
+        if (activeRoom.getName() == "Ball pit"){
             return true;
         } else{
             System.out.println("Epic backflip. Okay, Benson Boone! If only you were really Benson Boone he would probably know what to do. Maybe it's time to try a new move.");
@@ -114,14 +114,14 @@ public class Player extends Floor{
                 this.inventory.add(keyOne);
             }
         } else if (activeRoom.getName() == "Ball pit" && foundKeyTwo == true){
-            if (this.inventory.contains(keyOne)){
+            if (this.inventory.contains(keyTwo)){
                 System.out.println("You already have this key.");
             } else{   
                 System.out.println("Nice! You just picked up a key!");
                 this.inventory.add(keyTwo);
             }
         } else if (activeRoom.getName() == "Bathroom" && foundKeyThree == true){
-            if (this.inventory.contains(keyOne)){
+            if (this.inventory.contains(keyThree)){
                 System.out.println("You already have this key.");
             } else{
                 System.out.println("Nice! You just picked up a key!");
