@@ -12,6 +12,7 @@ public class Player extends Floor{
         this.inventory = new ArrayList <Objects>();
     }
 
+
     /**
      * Indicate whether the user has used the harmonize function to free themselves from the radiator
      * @return  Boolean value indicating function has been used
@@ -104,12 +105,20 @@ public class Player extends Floor{
     }
 
     /**
-     * Describes the player's surroundings
+     * Describes the player's surroundings. Modifies Basement Cupboard description if key has been found.
      * @param activeRoom the room the player is currently in
      * @return  the description of the player's activeRoom
     */
     public String lookAround(Room activeRoom){
-        return activeRoom.getDescription();
+        if (activeRoom.getName()!="Basement Cupboard"){
+            return activeRoom.getDescription();
+        } else{
+            if (this.inventory.contains(keyOne)){
+                return "Just a set of shelves behind a door, really. The doorway to the Main Basement Room is to the East.";
+            } else{
+                return activeRoom.getDescription();
+            }
+        }
     }
 
     /**

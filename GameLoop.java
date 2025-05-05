@@ -55,6 +55,7 @@ public class GameLoop {
         Boolean bigDoorOpen = false;
         Boolean wentPee = false;
         Boolean flushed = false;
+        int backflipCounter = 0;
 
         // The do...while structure means we execute the body of the loop once before checking the stopping condition
         do {
@@ -113,13 +114,21 @@ public class GameLoop {
             } else if (command.equals("BACKFLIP")){
                 if (moveability==true){
                     if (f.activeRoom!=f.floorMap.get(7)){
-                        if (p.backflip(f.activeRoom)){
-                            if (foundKeyTwo == false){
-                                System.out.println("That was an awesome backflip! You land in the balls and feel a cold piece of metal poking into your behind. How embarassing! Hopefully nobody saw. You look under you to investigate and find that you backflipped onto a key!");
-                                foundKeyTwo = true;
+                        if (backflipCounter<20){
+                            if (p.backflip(f.activeRoom)){
+                                if (foundKeyTwo == false){
+                                    System.out.println("That was an awesome backflip! You land in the balls and feel a cold piece of metal poking into your behind. How embarassing! Hopefully nobody saw. You look under you to investigate and find that you backflipped onto a key!");
+                                    foundKeyTwo = true;
+                                    backflipCounter+=1;
+                                } else{
+                                    System.out.println("That was an awesome backflip!");
+                                    backflipCounter+=1;
+                                }
                             } else{
-                                System.out.println("That was an awesome backflip!");
+                                backflipCounter+=1;
                             }
+                        } else{
+                            System.out.println("You have done so many backflips that this time you're not able to muster up enough energy to complete a full rotation. You land  right on your head and your neck snaps. You've flipped your last flip. Barbara always said you got too cocky when you backflipped. Oh Barbara...");
                         }
                     } else{
                         System.out.println("YIKES! That backflip was a little wonky, and you shatterred the mirrors around you. The glass came spilling down and cut you all up and now you're bleeding out. Your life flashes before your eyes. You see the face of Barbara, your first love from the tenth grade. You think of the naive but deep and true love you shared and you think of how carelessly you broke her heart when you both left for college because you didn't want to do long distance. You think of the beautiful life you two could have shared together. You think of how you'll never get the chance to reconcile with her ever again. Life around you fades and you see a bright light. You move towards it. And now you're dead.");
