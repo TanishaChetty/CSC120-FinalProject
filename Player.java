@@ -2,11 +2,15 @@ import java.util.ArrayList;
 
 public class Player extends Floor{
 
+    // Attributes
     protected ArrayList <Objects> inventory;
     Objects keyOne = new Objects ("keyOne");
     Objects keyTwo = new Objects ("keyTwo");
     Objects keyThree = new Objects ("keyThree");
 
+    /**
+     * Constructor for Player
+    */
     public Player(){
         super();
         this.inventory = new ArrayList <Objects>();
@@ -107,7 +111,7 @@ public class Player extends Floor{
     /**
      * Describes the player's surroundings. Modifies Basement Cupboard description if key has been found.
      * @param activeRoom the room the player is currently in
-     * @return  the description of the player's activeRoom
+     * @return  the description of the player's activeRoom. Returns a modified description for basement if KeyOne has already been found.
     */
     public String lookAround(Room activeRoom){
         if (activeRoom.getName()!="Basement Cupboard"){
@@ -198,7 +202,7 @@ public class Player extends Floor{
 
     /**
      * Empties the player's inventory
-     * @preturn returns Boolean based on whether the inventory was emptied
+     * @return returns Boolean based on whether the inventory was emptied
     */
     public Boolean putDown(){
         if (this.inventory.contains(keyOne)||this.inventory.contains(keyTwo)||this.inventory.contains(keyThree)){
@@ -212,7 +216,7 @@ public class Player extends Floor{
 
     /**
      * Allows player to use keys in the exit door
-     * @preturn Boolean based on whether the player's inventory contains all three keys
+     * @return Boolean based on whether the player's inventory contains all three keys
     */
     public Boolean useKeys(){
         if (this.inventory.contains(keyOne)&&this.inventory.contains(keyTwo)&&this.inventory.contains(keyThree)){

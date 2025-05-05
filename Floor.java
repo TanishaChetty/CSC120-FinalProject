@@ -6,9 +6,13 @@ public class Floor{
     protected ArrayList <Room>floorMap;
     protected Room activeRoom;
 
-    // constructor
+    /**
+     * Constructor for the Floor
+    */
     public Floor(){
         this.floorMap = new ArrayList <Room>();
+
+        // initial construction of all the rooms
         floorMap.add(new Room ("Main Basement Room", "Large mostly empty room. Smells a little odd. To the north, stairs lead up out of the basement. The walls to the East and South are empty and solid looking. There is a doorway on the West wall.", null, null, null, null));
         floorMap.add(new Room ("Basement Cupboard", "Just a set of shelves behind a door, really. The doorway to the Main Basement Room is to the East. Theres something shining on the shelf to the west.", null, null, null, null));
         floorMap.add(new Room ("Meeting Room", "Sterile white walls surround a u-shaped concrete table. There are doorways on each wall except for the East wall.", null, null, null, null));
@@ -20,6 +24,8 @@ public class Floor{
         floorMap.add(new Room ("Ball pit", "The floor is balls. Everything is balls. Bright, multicolored balls. It's so awesome you want to jump for joy! There are doors to the North, South, and West.", null, null, null, null));
         floorMap.add(new Room ("Entry way", "It's an entryway. Welcome. Or goodbye but probably not goodbye. You're probably stuck here. There are doorways to the North and East. There is a bigger awesomer grander doorway to the South. Maybe this one leads to freedom! It has 3 keyholes.", null, null, null, null));
         floorMap.add(new Room ("Outside", "You're free!", null, null, null, null));
+        
+        // attaches the neighboring rooms to each room using the resetWalls function
         this.floorMap.get(0).resetsWalls(floorMap.get(3), null, null, floorMap.get(1));
         this.floorMap.get(1).resetsWalls(null, floorMap.get(0), null, null);
         this.floorMap.get(2).resetsWalls(floorMap.get(4), null, floorMap.get(8), floorMap.get(7));
@@ -36,6 +42,10 @@ public class Floor{
     }
 
 
+    /**
+     * Accessor for the room the player is currently in
+     * @return Room the player is currently in
+    */
     public Room getActiveRoom(){
         return activeRoom;
     }
