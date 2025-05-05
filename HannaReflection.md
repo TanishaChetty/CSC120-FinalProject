@@ -1,0 +1,14 @@
+ - What was your **overall approach** to tackling this project?
+    I think it was difficult at first because I didn't reel like we had a strong approad, but I think we figured out that we needed the basic constructors and movement commands and then we started adding other commands that we wanted to implement and just integrating them with the rest of the code as we went.
+ - What **new thing(s)** did you learn / figure out in completing this project?
+    One major, although more abstract thing that I learned / figured out was how to create a game semi-from scratch. Obviously we had some projects and examples to work off of, but deciding which classes to create and how to connect them, etc. was something that we had to figure out a bit. I also learned more about how to work with array lists, how to use the do...while structure, got super comfortable with conditionals, and learned how to use a switch statement.
+ - Is there anything that you wish you had **implemented differently**?
+    I think it's possible that using something other than a ton of conditionals could have been more efficient, but I think I was just understood conditionals the best and they worked. Maybe utilizing switch statements in more places could have been cool too.
+ - If you had **unlimited time**, what additional features would you implement?
+    I think I would like to make more of the rooms have some kind of use. Most of them are just there to provide a more complex map to navigate and there's not really anything you can do in them which I think is a little bit boring.
+ - What was the most helpful **piece of feedback** you received while working on your project? Who gave it to you?
+    Going to Jordan's office hours were super helpful and we got feedback on how to make our navigational commands work. He showed us the switch statements and also helped us figure out how to connect all of our rooms.
+ - If you could go back in time and give your past self some **advice** about this project, what hints would you give?
+    Stop freaking out, calm down, it's going to work out. Also going to office hours was really helpful just to start feeling more confident and provide a good foundation to work from.
+ - _If you worked with a team:_ please comment on how your **team dynamics** influenced your experience working on this project.
+    I worked with Tanisha Chetty who also happens to be my dear friend as well as my roommate. We worked together throughout and I think we worked really well together. We also expected to to more division of the work, but we ended up just working together the whole time, which ended up worked pretty well. It was helpful that we are already close and also live in the same room.
