@@ -13,18 +13,19 @@ public class GameLoop {
         // Storage for user's responses
         String command = "";
 
-        // This could be replaced with a more interesting opening
+        // Game opening
         System.out.println("****************************************************************");
         System.out.println("ESCAPING THE CLOWN HOUSE CHALLENGE!! NOT CLICKBAIT!! *emotional*");
         System.out.println("****************************************************************");
 
-        // Instructions are sometimes helpful
+        // Setting the scene
         System.out.println("You wake up.");
         System.out.println("You’re in a dark basement and you are chained to the radiator! It seems to be HUMMING a TUNE");
         System.out.println("The last thing you remember is your higher up in the MLM, holding a big rubber mallet telling you that you didn’t sell enough leggings this month.");
         System.out.println("Next thing you know you were hearing the squeak of the mallet as it hit your head.");
         System.out.println("You went down whack-a-mole style.");
 
+        // Giving instructions
         System.out.println("You know you have to escape this crazy clown house which serves as the headquarters for this MLM you joined that one god-forsaken night after you decided software engineering wasn't your passion anymore. But how?");
         System.out.println("Here are the commands you can use as you try to escape:");
         System.out.println("Look around");
@@ -44,36 +45,40 @@ public class GameLoop {
 
         System.out.println("You can use any of these commands to navigate through the house as you attempt to escape! But first you'll have to unchain yourself from this MUSICAL radiator...");
 
+        //Calling constructors to start the game, and initializing some variables
         Floor f = new Floor();
         f.activeRoom = f.floorMap.get(0);
 
         Player p = new Player();
-        Boolean moveability = false;
-        Boolean foundKeyOne = false;
-        Boolean foundKeyTwo = false;
-        Boolean foundKeyThree = false;
-        Boolean bigDoorOpen = false;
-        Boolean wentPee = false;
-        Boolean flushed = false;
-        int backflipCounter = 0;
+        Boolean moveability = false; //indicates if you are stuck to the radiator
+        Boolean foundKeyOne = false; //indicates if you've located the basement cupboard key
+        Boolean foundKeyTwo = false; //indicates if you've located the ball pit key
+        Boolean foundKeyThree = false; //indicates if you've located the bathroom key
+        Boolean bigDoorOpen = false; //indicates if you've unlocked the big door to escape the clownhouse
+        Boolean wentPee = false; //indicates if you've gone pee in the bathroom
+        Boolean flushed = false; //indicates if you've flushed the toilet
+        int backflipCounter = 0; //counts how many backflips you've done
 
-        // The do...while structure means we execute the body of the loop once before checking the stopping condition
+        // do...while structure creates game loop. Goes through do first before checking stopping condition and stops if you've died or escaped.
         do {
-
+            //standardize case to upper
             command = scanner.nextLine().toUpperCase();
 
+            //go north: check if you can move, call goNorth from player class
             if (command.equals("GO NORTH")) {
                 if (moveability==true){
                     f.activeRoom = p.goNorth(f.activeRoom);
                 } else {
                     System.out.println("Hmmmm... you seem to be a bit stuck. Can't move... yet...");
                 }
+            //go east: check if you can move, call goEast from player class
             } else if (command.equals("GO EAST")) {
                 if (moveability==true){
                     f.activeRoom = p.goEast(f.activeRoom);
                 } else {
                     System.out.println("Hmmmm... you seem to be a bit stuck. Can't move... yet...");
                 }
+            //go south: check if you can move, check if you're trying to leave the entire house, call goSouth from player class
             } else if (command.equals("GO SOUTH")) {
                 if (moveability==true){
                     if (f.activeRoom==f.floorMap.get(9)){
@@ -90,6 +95,7 @@ public class GameLoop {
                 } else {
                     System.out.println("Hmmmm... you seem to be a bit stuck. Can't move... yet...");
                 }
+            //go west: check if you can move, check if you're going west in the cupboard (in which case you're finding a key), call goWest from player class
             } else if (command.equals("GO WEST")) {
                 if (moveability==true){
                     if (f.activeRoom == f.floorMap.get(1)){
@@ -103,6 +109,7 @@ public class GameLoop {
                 } else {
                     System.out.println("Hmmmm... you seem to be a bit stuck. Can't move... yet...");
                 }
+            //harmonize: unchain you from radiator if you are stuck.
             } else if (command.equals("HARMONIZE")){
                 if (moveability==false){
                     if (p.harmonize()){
@@ -111,6 +118,7 @@ public class GameLoop {
                 } else{
                     System.out.println("That's a nice tune. If only music could really solve every problem. It's not solving this one.");
                 }
+            //backflip: check if you are able to move first. Then check if you are in the mirror room, in which case you die. Then check if you've backfliped 20 times already, in which case you die. Then call backflip, and if you're in the ball pit, you find a key (if you haven't found that key yet).
             } else if (command.equals("BACKFLIP")){
                 if (moveability==true){
                     if (f.activeRoom!=f.floorMap.get(7)){
@@ -137,13 +145,16 @@ public class GameLoop {
                 } else {
                     System.out.println("Woah there buster, maybe try freeing yourself from those chains before you start doing flips.");
                 }
+            //look around: print return from lookAround from player class
             } else if (command.equals("LOOK AROUND")){
                 System.out.println(p.lookAround(f.activeRoom));
+            //go pee: call goPee from player class, if in bathroom updates "wentPee"
             } else if (command.equals("GO PEE")){
                 if (p.goPee(f.activeRoom)){
                     System.out.println("Epic! You just peed in the toilet. Your bladder feels so relieved.");
                     wentPee = true;
                 }
+            //flush: if you've gone pee already call flush from player class and updates "flushed". 
             } else if (command.equals("FLUSH")){
                 if (wentPee == true){
                     if (p.flush(f.activeRoom)){
@@ -155,6 +166,7 @@ public class GameLoop {
                 } else {
                     System.out.println("Ok sure.");
                 }
+            //wash hands: if you've gone pee and flushed call washHands from the player class and you find a key.
             } else if (command.equals("WASH HANDS")){
                 if (flushed == true){
                     if (p.washHands(f.activeRoom)){
@@ -170,14 +182,17 @@ public class GameLoop {
                 } else{
                     System.out.println("Your hands are nice and clean. But something's missing. Maybe you missed some steps?");
                 }
+            //pick up key: call pickUp from player class.
             } else if (command.equals ("PICK UP KEY")){
                 p.pickUp(f.activeRoom,foundKeyOne,foundKeyTwo,foundKeyThree);
+            //put down key: call putDown from player class and reset foundKey variables.
             } else if (command.equals ("PUT DOWN KEY")){
                 if (p.putDown()){
                     foundKeyOne = false;
                     foundKeyTwo = false;
                     foundKeyThree = false;
                 }
+            //use keys: check if you are in entry way, if so call useKeys from player class and update bigDoorOpen.
             } else if (command.equals ("USE KEYS")){
                 if (f.activeRoom == f.floorMap.get(9)){
                     if(p.useKeys()){
@@ -198,6 +213,7 @@ public class GameLoop {
         // Tidy up
         scanner.close();
 
+        // Let 'em know it's over
         System.out.println("*********");
         System.out.println("GAME OVER");
         System.out.println("*********");
