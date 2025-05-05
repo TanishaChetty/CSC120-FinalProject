@@ -20,7 +20,7 @@ public class GameLoop {
 
         // Instructions are sometimes helpful
         System.out.println("You wake up.");
-        System.out.println("You’re in a dark basement and you are chained to the radiator! It seems to be humming a tune…");
+        System.out.println("You’re in a dark basement and you are chained to the radiator! It seems to be HUMMING a TUNE");
         System.out.println("The last thing you remember is your higher up in the MLM, holding a big rubber mallet telling you that you didn’t sell enough leggings this month.");
         System.out.println("Next thing you know you were hearing the squeak of the mallet as it hit your head.");
         System.out.println("You went down whack-a-mole style.");
@@ -42,7 +42,7 @@ public class GameLoop {
         System.out.println("Wash hands");
 
 
-        System.out.println("You can use any of these commands to navigate through the house as you attempt to escape! But first you'll have to unchain yourself from this musical radiator...");
+        System.out.println("You can use any of these commands to navigate through the house as you attempt to escape! But first you'll have to unchain yourself from this MUSICAL radiator...");
 
         Floor f = new Floor();
         f.activeRoom = f.floorMap.get(0);
